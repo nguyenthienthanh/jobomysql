@@ -1,0 +1,13 @@
+{
+  "serverURL": "https://jobo-bot.herokuapp.com",
+  "apiURL": "https://jobohihi.herokuapp.com",
+  "webURL": "https://joboapp.com",
+  "mysql":
+  {
+    "prefix": "wp_",
+    "host": "localhost",
+    "user": "root",
+    "pass": "mysql",
+    "database": "ticket"
+  }
+}

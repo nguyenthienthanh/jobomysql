@@ -1,0 +1,13 @@
+{
+  "serverURL": "https://jobobot.herokuapp.com",
+  "apiURL": "https://jobohihi.herokuapp.com",
+  "webURL": "https://joboapp.com",
+  "mysql":
+  {
+    "prefix": "wp_",
+    "host": "localhost",
+    "user": "ambiusvn_admin",
+    "pass": "khanhthong96",
+    "database": "ambiusvn_jobo"
+  }
+}
