@@ -17,7 +17,7 @@
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "production",
-        "SSLPORT": 5134,
+        "SSLPORT": 58726,
         "APIPORT": 5126
       }
     },
@@ -26,7 +26,7 @@
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "development",
-        "SSLPORT": 5134,
+        "SSLPORT": 58726,
         "APIPORT": 3080
       }
     }
