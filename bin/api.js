@@ -67,14 +67,14 @@ app.use(function (err, req, res) {
 //   console.log(`Express SSL server is running on port: ${app.get('sslPort')}`);
 // });
 
-var server = net.createServer(function (socket) {
- socket.write('Echo server\r\n');
- socket.pipe(socket);
-});
-server.listen(app.get('port'), '216.12.214.227');
-console.log(`Server running at http://216.12.214.227:${app.get('port')}`);
+// var server = net.createServer(function (socket) {
+//  socket.write('Echo server\r\n');
+//  socket.pipe(socket);
+// });
+// server.listen(app.get('port'), '216.12.214.227');
+// console.log(`Server running at http://216.12.214.227:${app.get('port')}`);
 
-// var server = http.createServer(app).listen(app.get('port')).on('error', onError).on('listening', () => onListening(server));
+var server = http.createServer(app).listen(app.get('port')).on('error', onError).on('listening', () => onListening(server));
 
 // fs.readFile('server.key', 'utf8', (err, privateKey) => {
 //   fs.readFile('server.crt', 'utf8', (err, certificate) => {
