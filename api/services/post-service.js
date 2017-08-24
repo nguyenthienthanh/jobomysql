@@ -50,7 +50,7 @@ export function getByName(postName) {
     });
     connect(mysqlCon)
       .then(status => {
-        mysqlCon.query(`SELECT * FROM ${prefix}posts WHERE post_type LIKE 'post' AND post_name LIKE ${postName}`, (err, rows, fields) => {
+        mysqlCon.query(`SELECT * FROM ${prefix}posts WHERE post_type LIKE 'post' AND post_name LIKE '${postName}'`, (err, rows, fields) => {
           close(mysqlCon);
           if (err) reject(err);
           else resolve(rows);
