@@ -17,12 +17,6 @@ import config from 'config';
 const pretty = new PrettyError();
 const app = express();
 
-const privateKey = fs.readFileSync('server.key', 'utf8');
-const certificate = fs.readFileSync('server.crt', 'utf8');
-
-const credentials = { key: privateKey, cert: certificate };
-
-
 app.set('port', process.env.PORT || process.env.APIPORT || 5000 || config.get('apiPort'));
 
 app.set('sslPort', process.env.SSLPORT || 5215 || config.get('apiSslPort'));
@@ -73,9 +67,16 @@ app.use(function (err, req, res) {
 // });
 
 
-var server = http.createServer(app).listen(app.get('port')).on('error', onError).on('listening', () => onListening(server));
+// var server = http.createServer(app).listen(app.get('port')).on('error', onError).on('listening', () => onListening(server));
 
-var sslServer = https.createServer(credentials, app).listen(app.get('sslPort')).on('error', onError).on('listening', () => onListening(sslServer));
+fs.readFile('server.key', 'utf8', (err, privateKey) => {
+  fs.readFile('server.crt', 'utf8', (err, certificate) => {
+    const credentials = { key: privateKey, cert: certificate };
+
+    var sslServer = https.createServer(credentials, app).listen(app.get('sslPort')).on('error', onError).on('listening', () => onListening(sslServer));
+  });
+});
+
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -109,22 +110,22 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
+  case 'EACCES':
+    console.error(bind + ' requires elevated privileges');
+    process.exit(1);
+    break;
+  case 'EADDRINUSE':
+    console.error(bind + ' is already in use');
+    process.exit(1);
+    break;
+  default:
+    throw error;
   }
 }
 
@@ -134,9 +135,9 @@ function onError(error) {
 
 function onListening(_server) {
   var addr = _server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  var bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
   console.log('Listening on ' + bind);
 }
 // app.listen(app.get('port'), () => {
