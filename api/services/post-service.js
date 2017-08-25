@@ -28,7 +28,7 @@ export function get() {
     });
     connect(mysqlCon)
       .then(status => {
-        mysqlCon.query(`SELECT * FROM ${prefix}posts WHERE post_type LIKE 'post'`, (err, rows, fields) => {
+        mysqlCon.query(`SELECT * FROM ${prefix}posts WHERE post_type LIKE 'post'  ORDER BY post_date DESC`, (err, rows, fields) => {
           close(mysqlCon);
           if (err) reject(err);
           else {
