@@ -7,12 +7,18 @@ const router = express.Router({
 router.route('/')
   .get((req, res, next) => {
     const postName = req.query['post_name'];
+    const after = req.query['after'];
     // console.log(postName);
     let promise = null;
     if (postName) {
       promise = postServices.getByName(postName);
+    } else if (after) {
+      promise = postServices.getByAfter(new Date(after).toISOString());
     } else promise = postServices.get();
-    promise.then(data => res.status(200).json(data))
+    promise.then(data => {
+      console.log(data.length);
+      res.status(200).json(data);
+    })
       .catch(err => res.status(500).json(err));
   });
 
@@ -23,7 +29,5 @@ router.route('/:post_name')
       .then(data => res.status(200).json(data))
       .catch(err => res.status(500).json(err));
   });
-
-
 
 module.exports = router;

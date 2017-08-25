@@ -59,3 +59,23 @@ export function getByName(postName) {
       .catch(err => reject(err));
   });
 }
+
+export function getByAfter(after) {
+  return new Promise((resolve, reject) => {
+    const mysqlCon = mysql.createConnection({
+      host: mysqlConfig.host,
+      user: mysqlConfig.user,
+      password: mysqlConfig.pass,
+      database: mysqlConfig.database
+    });
+    connect(mysqlCon)
+      .then(status => {
+        mysqlCon.query(`SELECT * FROM wp_posts WHERE post_type LIKE 'post' AND post_date >= DATE_FORMAT('${after}', '%Y-%m-%d %H:%i:%s') ORDER BY post_date DESC`, (err, rows, fields) => {
+          close(mysqlCon);
+          if (err) reject(err);
+          else resolve(rows);
+        });
+      })
+      .catch(err => reject(err));
+  });
+}
