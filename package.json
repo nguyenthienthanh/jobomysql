@@ -5,6 +5,7 @@
   "author": "Nguyen Thien Thanh - Jobo",
   "main": "app.js",
   "scripts": {
+    "pm2": "pm2 startOrRestart ./ecosystem.config.js --env production",
     "build": "babel -w code/ -d build -s",
     "start": "better-npm-run start-prod-api",
     "dev": "better-npm-run start-dev-api",
@@ -13,7 +14,7 @@
   },
   "betterScripts": {
     "start-prod-api": {
-      "command": "nodemon ./bin/api --exec babel-node",
+      "command": "node server.js",
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "production",
@@ -22,7 +23,7 @@
       }
     },
     "start-dev-api": {
-      "command": "nodemon ./bin/api --exec babel-node",
+      "command": "nodemon server.js",
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "development",
