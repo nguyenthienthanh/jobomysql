@@ -59,38 +59,7 @@ app.use(function (err, req, res) {
   res.render('error');
 });
 
-// http.createServer(app).listen(app.get('port'), () => {
-//   console.log(`Express server is running on port: ${app.get('port')}`);
-// });
-
-// https.createServer(credentials, app).listen(app.get('sslPort'), () => {
-//   console.log(`Express SSL server is running on port: ${app.get('sslPort')}`);
-// });
-
-// var server = net.createServer(function (socket) {
-//  socket.write('Echo server\r\n');
-//  socket.pipe(socket);
-// });
-// server.listen(app.get('port'), '216.12.214.227');
-// console.log(`Server running at http://216.12.214.227:${app.get('port')}`);
-
 var server = http.createServer(app).listen(app.get('port')).on('error', onError).on('listening', () => onListening(server));
-
-// fs.readFile('server.key', 'utf8', (err, privateKey) => {
-//   fs.readFile('server.crt', 'utf8', (err, certificate) => {
-//     const credentials = { key: privateKey, cert: certificate };
-
-//     var sslServer = https.createServer(credentials, app).listen(app.get('sslPort')).on('error', onError).on('listening', () => onListening(sslServer));
-//   });
-// });
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-/**
- * Normalize a port into a number, string, or false.
- */
 
 function normalizePort(val) {
   var port = parseInt(val, 10);

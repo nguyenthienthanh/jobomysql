@@ -23,6 +23,7 @@ export function get() {
     const mysqlCon = mysql.createConnection({
       host: mysqlConfig.host,
       user: mysqlConfig.user,
+      port: mysqlConfig.port,
       password: mysqlConfig.pass,
       database: mysqlConfig.database
     });
