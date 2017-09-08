@@ -5,8 +5,7 @@
   "mysql":
   {
     "prefix": "wp_",
-    "host": "https://sng003.hawkhost.com/",
-    "port": 2083,
+    "host": "localhost",
     "user": "ambiusvn_admin",
     "pass": "khanhthong96",
     "database": "ambiusvn_jobo"
