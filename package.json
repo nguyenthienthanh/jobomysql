@@ -7,7 +7,7 @@
   "scripts": {
     "pm2": "pm2 startOrRestart ./ecosystem.config.js --env production",
     "build": "babel -w code/ -d build -s",
-    "start": "better-npm-run start-prod-api",
+    "start": "NODE_PATH=./api NODE_ENV=production node server.js",
     "dev": "better-npm-run start-dev-api",
     "lint": "jshint --exclude node_modules .",
     "test": "echo \"Error: no test specified\" && exit 1"
